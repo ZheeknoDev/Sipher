@@ -1,0 +1,18 @@
+{
+    "name": "zheeknodev/sipher",
+    "description": "A simple PHP encryption library",
+    "type": "library",
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "ZheeknoDev",
+            "email": "million8.me@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Sipher\\": "src/"
+        }
+    }
+}
