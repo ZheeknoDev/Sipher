@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @category Class
+ * @package  App/Core/Auth
+ * @author   ZheeknoDev <million8.me@gmail.com>
+ * @license  https://opensource.org/licenses/MIT - MIT License 
+ * @link     https://github.com/ZheeknoDev/sipher
+ */
+
 namespace Sipher;
 
 final class Sipher
@@ -60,17 +68,33 @@ final class Sipher
         return (object) ['encrypted' => bin2hex(base64_encode($encrypted)), 'hash' => $hash, 'key' => $encryptIv];
     }
 
+    /**
+     * Return random encrypt string
+     * @return object
+     */
     final public function get_random_encrypt()
     {
         return $this->encryption(self::randomString(32), $this->secret);
     }
 
+    /**
+     * Return encrypt string from your string
+     * @param string $string
+     * @return object
+     */
     final public function get_string_encrypt(string $string)
     {
         return $this->encryption($string, $this->secret);
     }
 
-    final public function get_verify_encrypt(string $encrypted, string $hash, string $key)
+    /**
+     * Return verified encrypt string
+     * @param string $encrypted
+     * @param string $hash
+     * @param string $key
+     * @return boolean
+     */
+    final public function get_verify_encrypt(string $encrypted, string $hash, string $key) : bool
     {
         return hash_equals(hash_hmac($this->hashing, $this->decryption($encrypted, $key), $this->secret), $hash);
     }
