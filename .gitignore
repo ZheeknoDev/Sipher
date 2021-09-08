@@ -1,0 +1,5 @@
+/vendor
+/vender/*
+index.php
+docker-compose.yml
+dockerfile
