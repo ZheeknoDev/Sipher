@@ -10,6 +10,8 @@
 
 namespace Sipher;
 
+use Exception;
+
 final class Sipher
 {
     private const CIPHER = 'aes-256-cbc';
@@ -25,6 +27,9 @@ final class Sipher
         $this->secret = $someString;
         $this->set_default_cipher(self::CIPHER);
         $this->set_default_hashing(self::HASHING);
+        if (empty($this->hashing) or empty($this->cipher)) {
+            throw new Exception('Unable to call the sipher class and method.');
+        }
     }
 
     public function __call($method, $arguments)
@@ -40,7 +45,7 @@ final class Sipher
     }
 
     /**
-     * step to decryption the data
+     * Step to decryption the data
      * @param string $encrypted
      * @param string $key
      * @return string
@@ -54,7 +59,7 @@ final class Sipher
     }
 
     /**
-     * step to encryption the data
+     * Step to encryption the data
      * @param string $string
      * @param string $secret
      * @return object
@@ -69,6 +74,51 @@ final class Sipher
     }
 
     /**
+     * Return on way encryption string
+     * @param string $string
+     * @return string
+     */
+    final public function get_crypt(string $string)
+    {
+        return (string) hash_hmac($this->hashing, $string, $this->secret);
+    }
+
+    /**
+     * Verify crypt string
+     * @param string $string
+     * @param string $string_crypt
+     * @return bool
+     */
+    final public function get_crypt_verify(string $string, string $string_crypt)
+    {
+        $crypt = hash_hmac($this->hashing, $string, $this->secret);
+        return hash_equals($crypt, $string_crypt);
+    }
+
+    /**
+     * Return password hash
+     * @param string $password
+     * @return string
+     */
+    final public function get_password_hash(string $password)
+    {
+        $hash_password = password_hash($password, PASSWORD_BCRYPT);
+        return (string) base64_encode($hash_password);
+    }
+
+    /**
+     * Verify password hash
+     * @param string $password
+     * @param string $password_hash
+     * @return bool
+     */
+    final public function get_password_verify(string $password, string $password_hash)
+    {
+        $password_hash = base64_decode($password_hash);
+        return password_verify($password, $password_hash);
+    }
+
+    /**
      * Return random encrypt string
      * @return object
      */
@@ -76,6 +126,17 @@ final class Sipher
     {
         return $this->encryption(self::randomString(32), $this->secret);
     }
+
+    /**
+     * Return random password
+     * @param int $length
+     * @return string
+     */
+    final public function get_random_password(int $length)
+    {
+        return self::randomString($length);
+    }
+
 
     /**
      * Return encrypt string from your string
@@ -94,7 +155,7 @@ final class Sipher
      * @param string $key
      * @return boolean
      */
-    final public function get_verify_encrypt(string $encrypted, string $hash, string $key) : bool
+    final public function get_verify_encrypt(string $encrypted, string $hash, string $key): bool
     {
         return hash_equals(hash_hmac($this->hashing, $this->decryption($encrypted, $key), $this->secret), $hash);
     }
