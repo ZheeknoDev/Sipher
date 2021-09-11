@@ -68,9 +68,9 @@ final class Sipher
     {
         $iv = $this->cipher_iv;
         $encrypted = openssl_encrypt($string, $this->cipher, $secret, 0, $iv);
-        $hash = bin2hex(base64_encode(hash_hmac($this->hashing, $string, $secret)));
+        $check_hash = bin2hex(base64_encode(hash_hmac($this->hashing, $string, $secret)));
         $encryptIv = base64_encode(bin2hex($iv));
-        return (object) ['encrypted' => bin2hex(base64_encode($encrypted)), 'hash' => $hash, 'key' => $encryptIv];
+        return (object) ['encrypted' => bin2hex(base64_encode($encrypted)), 'check_hash' => $check_hash, 'key' => $encryptIv];
     }
 
     /**
@@ -151,13 +151,13 @@ final class Sipher
     /**
      * Return verified encrypt string
      * @param string $encrypted
-     * @param string $hash
+     * @param string $check_hash
      * @param string $key
      * @return boolean
      */
-    final public function get_verify_encrypt(string $encrypted, string $hash, string $key): bool
+    final public function get_verify_encrypt(string $encrypted, string $check_hash, string $key): bool
     {
-        return hash_equals(hash_hmac($this->hashing, $this->decryption($encrypted, $key), $this->secret), $hash);
+        return hash_equals(hash_hmac($this->hashing, $this->decryption($encrypted, $key), $this->secret), $check_hash);
     }
 
     /**
