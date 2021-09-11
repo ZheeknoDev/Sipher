@@ -1,7 +1,7 @@
 # Welcome to Sipher
 A simple PHP encryption library
 
-[![Generic badge](https://img.shields.io/badge/php-7.x-green.svg)]() [![GitHub release](https://img.shields.io/github/release/ZheeknoDev/Sipher.svg)](https://GitHub.com/ZheeknoDev/Sipher/tags/) [![Generic badge](https://img.shields.io/badge/package-sipher-orange.svg)](https://packagist.org/packages/zheeknodev/sipher) [![GitHub license](https://img.shields.io/github/license/ZheeknoDev/ASPRA)](https://github.com/ZheeknoDev/ASPRA/blob/main/LICENSE)
+[![Generic badge](https://img.shields.io/badge/php->5.6-green.svg)]() [![GitHub release](https://img.shields.io/github/release/ZheeknoDev/Sipher.svg)](https://GitHub.com/ZheeknoDev/Sipher/tags/) [![Generic badge](https://img.shields.io/badge/package-sipher-orange.svg)](https://packagist.org/packages/zheeknodev/sipher) [![GitHub license](https://img.shields.io/github/license/ZheeknoDev/ASPRA)](https://github.com/ZheeknoDev/ASPRA/blob/main/LICENSE)
 
 # Feature
 - Generate a random string
