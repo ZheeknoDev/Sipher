@@ -17,7 +17,7 @@ A simple PHP encryption library
 # Getting Started
 install composer package
 ```sh
-composer require zheeknodev/sipher 1.0
+composer require zheeknodev/sipher
 ```
 ./index.php
 ```sh
