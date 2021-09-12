@@ -1,8 +1,8 @@
 <?php
 
 /**
- * @category Library
- * @package  zheeknodev/sipher - A simple PHP encryption library
+ * @category Class
+ * @package  zheeknodev/sipher
  * @author   ZheeknoDev <million8.me@gmail.com>
  * @license  https://opensource.org/licenses/MIT - MIT License 
  * @link     https://github.com/ZheeknoDev/sipher
