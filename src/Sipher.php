@@ -157,7 +157,7 @@ final class Sipher
      */
     final public function get_verify_encrypt(string $encrypted, string $check_hash, string $key): bool
     {
-        return hash_equals(hash_hmac($this->hashing, $this->decryption($encrypted, $key), $this->secret), $check_hash);
+        return hash_equals(hash_hmac($this->hashing, $this->decryption($encrypted, $key), $this->secret), base64_decode(hex2bin($check_hash)));
     }
 
     /**
