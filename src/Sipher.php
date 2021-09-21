@@ -8,7 +8,7 @@
  * @link     https://github.com/ZheeknoDev/sipher
  */
 
-namespace Sipher;
+namespace Zheeknodev\Sipher;
 
 use Exception;
 
